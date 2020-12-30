@@ -18,7 +18,7 @@ db = connection.cursor(dictionary=True)
 def get():
     db.execute("select * from people")
     result = db.fetchall()
-    return render_template("addresses.html", addresses=json.dumps(result))
+    return render_template("addresses.html", addresses=result)
 
 
 
