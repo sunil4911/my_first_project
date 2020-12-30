@@ -1,7 +1,7 @@
 #!flask/bin/python
 import json
 import mysql.connector
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 from helloworld.flaskrun import flaskrun
 
 application = Flask(__name__)
@@ -18,11 +18,9 @@ db = connection.cursor(dictionary=True)
 def get():
     db.execute("select * from people")
     result = db.fetchall()
-    return Response(json.dumps(result), mimetype='application/json', status=200)
+    return render_template("addresses.html", addresses=json.dumps(result))
 
-@application.route('/', methods=['POST'])
-def post():
-    return Response(json.dumps({'Output': 'Hello World'}), mimetype='application/json', status=200)
+
 
 if __name__ == '__main__':
     flaskrun(application)

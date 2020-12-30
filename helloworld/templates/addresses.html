@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>My First App</title>
+  </head>
+  <body>
+    <h3>My Address List</h3>
+    {% for address in addresses %}
+      <p>{{ address.name }}</p>
+    {% endfor %}
+  </body>
+</html>
