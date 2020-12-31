@@ -1,7 +1,7 @@
 #!flask/bin/python
 import json
 import mysql.connector
-from flask import Flask, Response, render_template, request
+from flask import Flask, Response, render_template, request, redirect, url_for
 from helloworld.flaskrun import flaskrun
 
 application = Flask(__name__)
@@ -26,7 +26,7 @@ def add_address():
     address = request.form
     db.execute("insert into people (name,address,city,state,zip,email) values (%s,%s,%s,%s,%s,%s)", (address["name"], address["address"], address["city"], address["state"], address["zip"], address["email"]))
     connection.commit()
-    return render_template("addresses.html", addresses=result)
+    return redirect(url_for("get"))
 
 if __name__ == '__main__':
     flaskrun(application)
