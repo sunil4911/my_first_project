@@ -24,6 +24,7 @@ def get():
 @application.route('/add', methods=['POST'])
 def add_address():
     address = request.get_json()
+    print(address)
     db.execute("insert into people (name,address,city,state,zip,email) values (%s,%s,%s,%s,%s,%s)", (address["name"], address["address"], address["city"], address["state"], address["zip"], address["email"]))
     connection.commit()
     return render_template("addresses.html", addresses=result)
